@@ -1,0 +1,126 @@
+#Program Start
+#Program Greets Student
+#Program ask for Student name
+
+print("**************************************************")
+print("Welcome to ULKOM GPA Grade system :-) ")
+print("***Developed by Lorant Kaszoni***")
+print(" *** Student *** ID-16739 *** ")
+print("**************************************************")
+print(input("Please Enter Your Name:"))
+print("Greetings")
+
+
+#Developer define uniColl MARK.
+# 'def' marks the start of a function header.
+# 'while True' statement(Loop forever).
+# 'try' block to catch and handle exeptions.
+# 'except' clause determine how program react to exceptions.
+# 'continue' returns the control to the begining of the while loop.
+# 'else' statement is used to execute if the conditional expression in the 'if' statement resolve 0 or False.
+# 'return' statement ends the function returning the result.
+# 'if' statementused for decision making.
+# 'break' statement ends the loop.
+# 'print' function diplay specified the text to the screen or other result.
+# 'int' function that converts the specified value into an intiger number.
+# 'input' function that reads lines entered by an input device such as keyboard and convert into a string and returnes it.
+# 'ValueError' standard exception raised by various methods that perform range-checking. 
+
+def validateuniCollmark():
+    while True:
+        try:
+            uniCollgrade = int(input())
+        except ValueError:
+            print('Please Enter a valid number from 0 to 100')
+            continue
+        else:
+            if uniCollgrade >= 0 and uniCollgrade <= 100:
+                return uniCollgrade
+                break
+            else:
+                print('Please Enter a valid number from 0 to 100')
+                continue
+
+#Developer define uniColl GRADE calculation according to the 'inputed' MARKS
+
+
+def calculateuniCollgrade(uniCollmark):
+    if uniCollmark <= 39:
+        return 'Fail', 0
+    else:
+        if uniCollmark <= 49:
+            return 'Pass', 2
+        else:
+            if uniCollmark <= 59:
+                return 'Credit', 3
+            else:
+                if uniCollmark <= 69:
+                    return 'Distinction', 4
+                else:
+                    return 'Upper Distinction', 5
+
+
+#Developer define uniColl GRADE calculation according to the calculated GRADES and the program returns the characters atributed to the grades
+
+def returnuniCollgrade(y):
+    if y == 'Fail':
+        return 'F'
+    else:
+        if y == 'Pass':
+            return 'P'
+        else:
+            if y == 'Distinction':
+                return 'B'
+            else:
+                if y == 'Upper Distinction':
+                    return 'A'
+                else:
+                    return 'C'
+
+
+#Developer write the main source code
+#Program ask for grade for each subject                
+
+
+
+while True:
+    print('Whenever you are Ready,  \nPress Enter to Start GPA calculator,')
+    student=input()
+    print('Please insert ONLY numbers ! \nMarks ONLY between 0 and 100')
+    print('Please input Math mark: ')
+    mathMark = validateuniCollmark()
+    print('Please input English Mark: ')
+    englishMark = validateuniCollmark()
+    print('Please input Programing mark: ')
+    programmingMark = validateuniCollmark()
+    print('Please input DataBase Mark: ')
+    databaseMark = validateuniCollmark()
+    mathuniCollGrade, mathuniCollCredit = calculateuniCollgrade(mathMark)
+    englishuniCollGrade, englishuniCollCredit = calculateuniCollgrade(englishMark)
+    programminguniCollGrade, programminguniCollCredit = calculateuniCollgrade(programmingMark)
+    databaseuniCollGrade, databaseuniCollCredit = calculateuniCollgrade(databaseMark)
+
+
+#Program return results for each subject.
+    
+    print('\n\n OK',student, 'Your grades are as Follow:  \n')
+    print('Math Grade:  ', mathuniCollGrade, ' ', returnuniCollgrade(mathuniCollGrade), '\n')
+    print('English Grade:  ', englishuniCollGrade, ' ', returnuniCollgrade(englishuniCollGrade), '\n')
+    print('Programming Grade:  ', programminguniCollGrade, ' ', returnuniCollgrade(programminguniCollGrade), '\n')
+    print('Data Base Grade:  ', databaseuniCollGrade, ' ', returnuniCollgrade(databaseuniCollGrade), '\n')
+
+
+#The program display the Grate Point Avarage(GPA)and also ask user if want to continue or to exit.
+
+    GPA = ((mathuniCollCredit * 2 + englishuniCollCredit * 2 + programminguniCollCredit * 3 + databaseuniCollCredit * 3) / 10)
+    print('Your GPA result for this Semester is:', GPA, '\n')
+    print('To Finish type in <EXIT>. \nPress any button to start again')
+    check = input()
+    if check != 'EXIT':
+        print('All over again')
+        continue
+    else:
+        print('Have nice Day, Bye Now :)!')
+        break
+
+exit()
